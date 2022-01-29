@@ -32,9 +32,6 @@ The only VI needed is the **Key.vim**:
   - Extra data available (e.g. I32("3.14") = 3 + ".14")
 - Supports section, key & line comments (";" or "#")
 
-![ConfigVITree](/docs/imgs/ConfigVITree.png)
-
-
 ## Overview
 
 This configuration file library solves a number of issues when dealing with configuration files to load/save settings from an application. For starters, this library does not use any references (DVR, SEQ, FileRefs, etc.) so there's no need to manage Opening/Closing/Sharing references. Instead, all methods within the same application call a functional global to ensure the latest values are read/written, this means that there's only one VI needed by all threads to read/write from the same (or different) configuration files.
