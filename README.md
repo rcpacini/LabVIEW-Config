@@ -21,9 +21,9 @@ The only VI needed is the **Key.vim**:
 **Key features:**
 
 - No references!!! (uses a functional global VI to ensure thread safeness)
-  - No more passing references all over the applciation!!!
+  - No more passing references all over the application!!!
 - Preloads the INI file to memory (faster performance)
-- Supports async disk operations (automatically reloads the file if changed on disk using CRC-16)
+- Supports async disk operations (automatically reloads the file if changed on disk via CRC-16)
 - Writes keys to disk when modified (rather than waiting till close)
 - Supports all primary data types:
   - I8, I16, I32, I64, U8, U16, U32, U64, SGL, DBL, EXT, EnumU8, EnumU16, EnumU32, String, Path, Boolean
