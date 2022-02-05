@@ -1,5 +1,5 @@
 # LabVIEW-Config
-Configuration file library written in LabVIEW; thread and application safe, no reference passing, auto reloading, built-in caching, minimal code.
+Configuration file library written in LabVIEW; thread and application safe, no reference passing, auto file reload, built-in memory cache, minimal code.
 
 ## Gettings Started
 
@@ -20,23 +20,23 @@ The only VI needed is the **Key.vim**:
 
 **Key features:**
 
-- No references!!! (uses a functional global VI to ensure thread safeness)
-  - No more passing references all over the application!!!
-- Preloads the INI file to memory (faster performance)
-- Supports async disk operations (automatically reloads the file if changed on disk via CRC-16)
-- Writes keys to disk when modified (rather than waiting till close)
-- Supports all primary data types:
+- Thread Safe - supports async disk operations
+  - Always reloads before file operations
+  - Writes keys to disk when modified (rather than caching)
+- Supports primary data types:
   - I8, I16, I32, I64, U8, U16, U32, U64, SGL, DBL, EXT, EnumU8, EnumU16, EnumU32, String, Path, Boolean
-- Data type validation - Raises type cast errors for:
+- Data type validation - Raises type cast error if:
   - Invalid data type cast (e.g DBL("Hello World"))
   - Extra data available (e.g. I32("3.14") = 3 + ".14")
 - Supports section, key & line comments (";" or "#")
 
 ## Overview
 
-This configuration file library solves a number of issues when dealing with configuration files to load/save settings from an application. For starters, this library does not use any references (DVR, SEQ, FileRefs, etc.) so there's no need to manage Opening/Closing/Sharing references. Instead, all methods within the same application call a functional global to ensure the latest values are read/written, this means that there's only one VI needed by all threads to read/write from the same (or different) configuration files.
+This configuration file library solves a number of issues when dealing with configuration files to load/save settings from an application. 
+For starters, this library does not use any references (DVR, SEQ, FileRefs, etc.) so there's no need to manage Opening/Closing/Sharing references throughout the application.
 
-The functional global engine VI also checks (via CRC-16) if a file was modified on disk and automatically reloads the file prior to any operation. This ensures that the configuration files are synced between threads as well as applications.
+Instead, the non-reentrant methods to read, modify and write (if modified) restrict access within the same application. 
+As well as automatically reload the file on each call to ensure any asynchronous disk modifications are reloaded.
 
 All operations to create/read/write INI keys are embedded in the **Key.vim** maleable VI, designed for modularity.
 
@@ -59,7 +59,7 @@ The **Key.vim** maleable VI has an optional **Operation** input to:
 - **Read** - Reads the key only (do not create)
 - **Write** - Write or create the key (writes to disk)
 
-As well as a comment input which adds an inline comment if the key is created to add optional usage information for the end user.
+As well as a comment input which adds an inline comment if the key is created to add additional notes.
 
 ## List & Remove Keys
 
