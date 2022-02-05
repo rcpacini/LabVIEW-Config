@@ -29,6 +29,8 @@ The only VI needed is the **Key.vim**:
   - Invalid data type cast (e.g DBL("Hello World"))
   - Extra data available (e.g. I32("3.14") = 3 + ".14")
 - Supports section, key & line comments (";" or "#")
+- Built-in memory cache - Store application instance settings without saving keys to disk
+  - Use `%memory%` as the path input to store/recall configuration to memory
 
 ## Overview
 
@@ -68,3 +70,7 @@ Additionally, the List and Remove Key/Section VIs are included to manipulate the
 ![ConfigListRemove](/docs/imgs/ConfigListRemove.png)
 
 The goal for this library is to provide a standalone, referenceless, thread safe configuration library designed for modularity. Nearly every LabVIEW application needs to load/dump configuration data on startup/shutdown. This library tries to make that process easier.
+
+## Testing
+
+Run the `/tests/Test_Config.vi` to verify the configuration library functionality. If successful, the **All Passed** boolean should be true.
