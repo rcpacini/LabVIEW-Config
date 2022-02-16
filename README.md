@@ -21,7 +21,7 @@ The only VI needed is the **Key.vim**:
 **Key features:**
 
 - Thread Safe - supports async disk operations
-  - Always reloads before file operations
+  - Always reloads before each file operation
   - Writes keys to disk when modified (rather than caching)
 - Supports primary data types:
   - I8, I16, I32, I64, U8, U16, U32, U64, SGL, DBL, EXT, EnumU8, EnumU16, EnumU32, String, Path, Boolean
@@ -29,8 +29,14 @@ The only VI needed is the **Key.vim**:
   - Invalid data type cast (e.g DBL("Hello World"))
   - Extra data available (e.g. I32("3.14") = 3 + ".14")
 - Supports section, key & line comments (";" or "#")
-- Built-in memory cache - Store application instance settings without saving keys to disk
-  - Use `%memory%` as the path input to store/recall configuration to memory
+- Built-in symbolic paths:
+  - `%memory%` = In memory settings (don't save to disk)
+  - `%settings%` = Application settings config path
+    - Run-Time: `<AppDir>\Settings.ini`
+    - Dev: `<ProjectDir>\Settings.ini`
+  - `%temp%` = Temporary settings config path (i.e. for repo ignore)
+    - Run-Time: `<AppDir>\Temp.ini`
+    - Dev: `<ProjectDir>\Temp.ini`
 
 ## Overview
 
